@@ -1,9 +1,9 @@
 import type { AWS } from "@serverless/typescript";
 
-import { hello } from "./src/functions";
+import { webhook } from "./src/functions";
 
 const serverlessConfiguration: AWS = {
-  service: "webhook",
+  service: "linear-webhook",
   frameworkVersion: "2",
   custom: {
     webpack: {
@@ -15,6 +15,7 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: "aws",
     runtime: "nodejs12.x",
+    region: "ap-northeast-1",
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
@@ -24,7 +25,7 @@ const serverlessConfiguration: AWS = {
     },
     lambdaHashingVersion: "20201221",
   },
-  functions: { hello },
+  functions: { webhook },
 };
 
 module.exports = serverlessConfiguration;
