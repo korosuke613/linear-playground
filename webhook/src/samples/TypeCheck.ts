@@ -1,12 +1,5 @@
-import {
-  CreateIssueWebhook,
-  // CreateCommentWebhook,
-  // RemoveCommentWebhook,
-  // RemoveIssueWebhook,
-  Webhook,
-} from "@libs/LinearWebhookInterfaces";
 import { createIssue } from "./createIssue";
-import { LinearWebhookHandler } from "@libs/LinearWebhookHandler";
+import { CreateIssueWebhook, WebhookHandler, Webhook } from "linear-webhook";
 // import { createComment } from "./createComment";
 // import { removeIssue } from "./removeIssue";
 // import { removeComment } from "./removeComment";
@@ -23,14 +16,12 @@ if (unknownWebhook.action === "create") {
   }
 }
 
-const handler = new LinearWebhookHandler();
-handler.addCallbackWebhook(
-  "CreateIssueWebhook",
-  (webhook: CreateIssueWebhook) => {
-    console.log(webhook.data.title);
-    return webhook.data.createdAt;
-  }
-);
+const handler = new WebhookHandler();
+
+handler.addCallback("CreateIssueWebhook", (webhook: CreateIssueWebhook) => {
+  console.log(webhook.data.title);
+  return webhook.data.createdAt;
+});
 
 handler.execCallback(unknownWebhook).then((result) => {
   console.log(result);

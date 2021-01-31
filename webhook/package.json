@@ -10,7 +10,9 @@
   "dependencies": {
     "@middy/core": "^1.5.0",
     "@middy/http-json-body-parser": "^1.5.0",
-    "source-map-support": "^0.5.19"
+    "linear-webhook": "^0.1.0",
+    "source-map-support": "^0.5.19",
+    "trekin": "^0.7.0"
   },
   "devDependencies": {
     "@cybozu/eslint-config": "^11.0.3",
