@@ -3,13 +3,16 @@ import "source-map-support/register";
 import { formatJSONResponse } from "@libs/apiGateway";
 import { middyfy } from "@libs/lambda";
 import type { Handler } from "aws-lambda";
+import { Webhook, WebhookHandler } from "linear-webhook";
 
 const webhook: Handler = async (event) => {
-  const payload = event.body;
+  const handler = new WebhookHandler();
+  const linearWebhook: Webhook = event.body;
 
   console.log(
-    `Action: ${payload.action}, Type: ${payload.type}`,
-    JSON.stringify(payload, null, 2)
+    handler.getWebhookEvent(linearWebhook),
+    `Action: ${linearWebhook.action}, Type: ${linearWebhook.type}`,
+    JSON.stringify(linearWebhook, null, 2)
   );
 
   return formatJSONResponse({

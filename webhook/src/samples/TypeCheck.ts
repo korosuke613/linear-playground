@@ -1,5 +1,5 @@
 import { createIssue } from "./createIssue";
-import { CreateIssueWebhook, WebhookHandler, Webhook } from "linear-webhook";
+import { CreateIssueWebhook, Webhook, WebhookHandler } from "linear-webhook";
 // import { createComment } from "./createComment";
 // import { removeIssue } from "./removeIssue";
 // import { removeComment } from "./removeComment";
